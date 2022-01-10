@@ -13,6 +13,9 @@ jobs:
       - name: 'Checkout Project'
         uses: actions/checkout@v2
 
+      - name: PHP STatic ANalyser (phpstan)
+        uses: chindit/actions-phpstan@1.0.1
+
       - name: 'Setup Environment'
         uses: shivammathur/setup-php@v2
         with:
@@ -21,7 +24,7 @@ jobs:
           tools: phpunit,composer
 
       - name: 'Install Dependencies'
-        run: composer install -o -q
+        run: composer install
 
       - name: PHPUnit
         uses: chindit/actions-phpunit@master
