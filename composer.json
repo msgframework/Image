@@ -4,8 +4,7 @@
     "type": "library",
     "require": {
         "php": ">=7.4",
-        "msgframework/file": "^0.0.4",
-        "msgframework/registry": "^1.0"
+        "msgframework/file": "^0.0.4"
     },
     "license": "MIT",
     "autoload": {
