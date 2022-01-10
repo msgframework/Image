@@ -20,5 +20,5 @@ jobs:
           tools: phpunit,composer
       - name: 'Install Dependencies'
         run: composer install -o -q
-      - name: 'Run PHPUnit'
-        run: vendor/bin/phpunit
+      - name: PHPUnit
+        uses: chindit/actions-phpunit@master
