@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['8.0', '8.1']
+        php-versions: ['8.0']
     name: Testing on PHP ${{ matrix.php-versions }}
     steps:
       - name: 'Checkout Project'
@@ -17,7 +17,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: imagick,gd,mbstring,bcmath
+          extensions: cli,imagick,gd,mbstring,bcmath,cli
           tools: phpunit,composer
 
       - name: 'Install Dependencies'
@@ -31,10 +31,5 @@ jobs:
           reporter: 'github-pr-review'
           target_directory: '.'
 
-      - name: PHPUnit
-        uses: php-actions/phpunit@v3
-        with:
-          php_extensions: xdebug
-          bootstrap: vendor/autoload.php
-          configuration: phpunit.xml
-          args: --coverage-text
+      - name: 'Test with phpunit'
+        run: vendor/bin/phpunit --coverage-text
