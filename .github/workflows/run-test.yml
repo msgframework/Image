@@ -6,6 +6,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: true
       matrix:
         php-versions: ['8.0']
     name: Testing on PHP ${{ matrix.php-versions }}
@@ -17,8 +18,13 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: cli,imagick,gd,mbstring,bcmath,cli,xdebug
-          tools: phpunit,composer
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          coverage: none
+
+      - name: 'Setup Problem Matches'
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: 'Install Dependencies'
         run: composer install --ignore-platform-reqs
@@ -34,7 +40,7 @@ jobs:
       - name: 'PHPUnit'
         uses: php-actions/phpunit@v3
         with:
-          php_extensions: phpdbg
+          php_extensions: xdebug
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
           args: --coverage-text
