@@ -23,8 +23,15 @@ jobs:
       - name: 'Install Dependencies'
         run: composer install --ignore-platform-reqs
 
-      - name: PHP STatic ANalyser (phpstan)
-        uses: chindit/actions-phpstan@1.0.1
+      - name: 'Run php check code with reviewdog'
+        uses: GeneaLabs/action-reviewdog-phpstan@1.0.0
+        with:
+          github_token: '${{ github.token }}'
+          level: 'error'
+          fail_on_error: 'false'
+          phpstan_level: 4
+          reporter: 'github-pr-review'
+          target_directory: '.'
 
       - name: PHPUnit
         uses: chindit/actions-phpunit@master

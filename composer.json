@@ -20,7 +20,8 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^1.3"
     },
     "suggest": {
         "ext-gd": "To use GD library based image processing.",
