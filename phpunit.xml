@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         bootstrap="vendor/autoload.php"
-         colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
-         stopOnFailure="false"
->
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+    <coverage>
+        <include>
+            <directory suffix=".php">.</directory>
+        </include>
+        <report>
+            <html outputDirectory="./_coverage" lowUpperBound="35" highLowerBound="70"/>
+            <text outputFile="php://stdout" showUncoveredFiles="true"/>
+        </report>
+    </coverage>
     <testsuites>
-        <testsuite name="Package Test Suite">
-            <directory suffix=".php">./Tests/</directory>
+        <testsuite name="main">
+            <directory>Tests</directory>
         </testsuite>
     </testsuites>
+    <logging/>
 </phpunit>
