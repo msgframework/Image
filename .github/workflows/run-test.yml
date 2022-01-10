@@ -17,7 +17,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: cli,imagick,gd,mbstring,bcmath,cli
+          extensions: cli,imagick,gd,mbstring,bcmath,cli,xdebug
           tools: phpunit,composer
 
       - name: 'Install Dependencies'
@@ -31,5 +31,10 @@ jobs:
           reporter: 'github-pr-review'
           target_directory: '.'
 
-      - name: 'Test with phpunit'
-        run: vendor/bin/phpunit --coverage-text
+      - name: 'PHPUnit'
+        uses: php-actions/phpunit@v3
+        with:
+          php_extensions: phpdbg
+          bootstrap: vendor/autoload.php
+          configuration: phpunit.xml
+          args: --coverage-text
