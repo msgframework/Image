@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d35f8f99957f9e5ccf12d59f7fd2a339",
+    "content-hash": "c0ee0a48d35d1323d4e5b5bbb1025ed2",
     "packages": [
         {
             "name": "msgframework/file",
@@ -2713,9 +2713,6 @@
     "platform": {
         "php": ">=7.4"
     },
-    "platform-dev": {
-        "ext-imagick": "*",
-        "ext-gd": "*"
-    },
+    "platform-dev": [],
     "plugin-api-version": "2.2.0"
 }

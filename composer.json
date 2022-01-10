@@ -7,6 +7,7 @@
         "msgframework/file": "^0.0.4"
     },
     "license": "MIT",
+    "keywords": ["image", "gd", "imagick", "watermark", "resize"],
     "autoload": {
         "psr-4": {
             "Msgframework\\Lib\\Image\\": ""
@@ -19,8 +20,10 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "ext-imagick": "*",
-        "ext-gd": "*"
+        "phpunit/phpunit": "^9.5"
+    },
+    "suggest": {
+        "ext-gd": "To use GD library based image processing.",
+        "ext-imagick": "To use Imagick based image processing."
     }
 }
