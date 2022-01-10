@@ -1,7 +1,6 @@
 # The Image library
 
-[![PHP Version Require](https://img.shields.io/badge/php->=7.4-8892BF)](https://packagist.org/packages/msgframework/file)
-[![license](https://img.shields.io/badge/license-MIT-428F7E)](https://packagist.org/packages/msgframework/file)
+[![Latest Stable Version](http://poser.pugx.org/msgframework/image/v)](https://packagist.org/packages/msgframework/image) [![Total Downloads](http://poser.pugx.org/msgframework/image/downloads)](https://packagist.org/packages/msgframework/image) [![Latest Unstable Version](http://poser.pugx.org/msgframework/image/v/unstable)](https://packagist.org/packages/msgframework/image) [![License](http://poser.pugx.org/msgframework/image/license)](https://packagist.org/packages/msgframework/image) [![PHP Version Require](http://poser.pugx.org/msgframework/image/require/php)](https://packagist.org/packages/msgframework/image)
 
 ## About
 This library help to manipulate with images: crop, resize, change quality and watermarking.
