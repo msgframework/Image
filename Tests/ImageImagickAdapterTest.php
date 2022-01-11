@@ -7,9 +7,7 @@ class ImageImagickAdapterTest extends TestCase
 {
     var array $path = array(
         'jpg' => __DIR__ . DIRECTORY_SEPARATOR . 'asset' . DIRECTORY_SEPARATOR . 'apples.jpg',
-        'watermark' => __DIR__ . DIRECTORY_SEPARATOR . 'asset' . DIRECTORY_SEPARATOR . 'watermark.png',
-        'save' => __DIR__ . DIRECTORY_SEPARATOR . 'asset' . DIRECTORY_SEPARATOR . 'imagick' . DIRECTORY_SEPARATOR . 'save.jpg',
-        'watermarking' => __DIR__ . DIRECTORY_SEPARATOR . 'asset' . DIRECTORY_SEPARATOR . 'imagick' . DIRECTORY_SEPARATOR . 'watermarking.jpg'
+        'watermark' => __DIR__ . DIRECTORY_SEPARATOR . 'asset' . DIRECTORY_SEPARATOR . 'watermark.png'
     );
 
     function testImagickAdapterCreate()
@@ -17,6 +15,7 @@ class ImageImagickAdapterTest extends TestCase
         $image = new \Msgframework\Lib\Image\Adapter\ImagickAdapter($this->path['jpg']);
 
         $this->assertTrue($image instanceof \Msgframework\Lib\Image\Adapter\ImagickAdapter);
+        $image->destroy();
     }
 
     function testImagickAdapterImageResize()
@@ -29,6 +28,7 @@ class ImageImagickAdapterTest extends TestCase
         $this->assertSame(300, $image->resize(300, 1)->getWidth());
 
         $this->assertSame(300, $image->resize(300, 2)->getHeight());
+        $image->destroy();
     }
 
     function testImagickAdapterImageCrop()
@@ -42,6 +42,7 @@ class ImageImagickAdapterTest extends TestCase
 
         $this->assertSame(500, $image->getWidth());
         $this->assertSame(500, $image->getHeight());
+        $image->destroy();
     }
 
     function testImagickAdapterImageScale()
@@ -60,32 +61,38 @@ class ImageImagickAdapterTest extends TestCase
         $image->scale(200, 2);
 
         $this->assertSame(200, $image->getHeight());
+        $image->destroy();
     }
 
     function testImagickAdapterImageSave()
     {
+        $tmp_file = new \Msgframework\Lib\File\TmpFile();
         $image = new \Msgframework\Lib\Image\Adapter\ImagickAdapter($this->path['jpg']);
 
         $this->assertSame(2482, $image->getWidth());
         $this->assertSame(3475, $image->getHeight());
 
-        $image->save($this->path['save']);
+        $image->save($tmp_file->getPathname());
 
-        $this->assertFileExists($this->path['save']);
+        $this->assertFileExists($tmp_file->getPathname());
 
-        unlink($this->path['save']);
+        $image->destroy();
+        $tmp_file->remove();
     }
 
     function testImagickAdapterImageWatermarking()
     {
+        $tmp_file = new \Msgframework\Lib\File\TmpFile();
         $image = new \Msgframework\Lib\Image\Adapter\ImagickAdapter($this->path['jpg']);
         $watermark = new \Msgframework\Lib\Image\Adapter\ImagickAdapter($this->path['watermark']);
 
         $this->assertSame(2482, $image->getWidth());
         $this->assertSame(3475, $image->getHeight());
 
-        $image->watermark($watermark, 0, 0, 50, .9)->save($this->path['watermarking']);
+        $image->watermark($watermark, 0, 0, 50, .9)->save($tmp_file->getPathname());
 
-        $this->assertFileExists($this->path['watermarking']);
+        $this->assertFileExists($tmp_file->getPathname());
+        $image->destroy();
+        $tmp_file->remove();
     }
 }

@@ -17,8 +17,18 @@ class ImageFactoryTest extends TestCase
     {
         $factory = new ImageFactory();
 
-        $this->assertTrue($factory->getImage($this->path['jpg']) instanceof ImageAdapterInterface);
-        $this->assertTrue($factory->getImage($this->path['jpg'], 'Imagick') instanceof \Msgframework\Lib\Image\Adapter\ImagickAdapter);
-        $this->assertTrue($factory->getImage($this->path['jpg'], 'GD') instanceof \Msgframework\Lib\Image\Adapter\GDAdapter);
+        $image = $factory->getImage($this->path['jpg']);
+
+        $this->assertTrue($image instanceof ImageAdapterInterface);
+
+        $image->destroy();
+        $image = $factory->getImage($this->path['jpg'], 'Imagick');
+        $this->assertTrue($image instanceof \Msgframework\Lib\Image\Adapter\ImagickAdapter);
+
+        $image->destroy();
+        $image = $factory->getImage($this->path['jpg'], 'GD');
+        $this->assertTrue($image instanceof \Msgframework\Lib\Image\Adapter\GDAdapter);
+
+        $image->destroy();
     }
 }
