@@ -31,5 +31,6 @@ jobs:
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
           args: --coverage-text
+          memory_limit: 256M
         env:
           XDEBUG_MODE: coverage
