@@ -10,7 +10,8 @@
     "keywords": ["image", "gd", "imagick", "watermark", "resize"],
     "autoload": {
         "psr-4": {
-            "Msgframework\\Lib\\Image\\": ""
+            "Msgframework\\Lib\\Image\\": "",
+            "MSGFramework\\Lib\\Image\\Exception\\": "/Exception"
         }
     },
     "authors": [
