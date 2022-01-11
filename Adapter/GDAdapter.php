@@ -92,8 +92,8 @@ class GDAdapter extends File implements ImageAdapterInterface
         $src_w = ceil($width / $size_ratio);
         $src_h = ceil($height / $size_ratio);
 
-        $sx = floor(($this->getWidth() - $src_w) / 2);
-        $sy = floor(($this->getHeight() - $src_h) / 2);
+        $sx = intval(floor(($this->getWidth() - $src_w) / 2));
+        $sy = intval(floor(($this->getHeight() - $src_h) / 2));
 
         $tmp_image = imagecreatetruecolor($width, $height);
 
@@ -133,7 +133,7 @@ class GDAdapter extends File implements ImageAdapterInterface
                     return $this;
                 } else {
                     $width = $size;
-                    $height = ($width / $this->getWidth()) * $this->getHeight();
+                    $height = intval(($width / $this->getWidth()) * $this->getHeight());
                 }
 
                 break;
@@ -143,7 +143,7 @@ class GDAdapter extends File implements ImageAdapterInterface
                     return $this;
                 } else {
                     $height = $size;
-                    $width = ($height / $this->getHeight()) * $this->getWidth();
+                    $width = intval(($height / $this->getHeight()) * $this->getWidth());
                 }
 
                 break;
@@ -152,12 +152,12 @@ class GDAdapter extends File implements ImageAdapterInterface
 
                 if ($this->getWidth() >= $this->getHeight()) {
                     $width = $size;
-                    $height = ($width / $this->getWidth()) * $this->getHeight();
+                    $height = intval(($width / $this->getWidth()) * $this->getHeight());
 
                 } else {
 
                     $height = $size;
-                    $width = ($height / $this->getHeight()) * $this->getWidth();
+                    $width = intval(($height / $this->getHeight()) * $this->getWidth());
 
                 }
 
@@ -305,8 +305,8 @@ class GDAdapter extends File implements ImageAdapterInterface
             $watermark_x = $this->getWidth() - $margin - $watermark->getWidth();
             $watermark_y = $this->getHeight() - $margin - $watermark->getHeight();
         } else {
-            $watermark_x = ($this->getWidth() / 2) - ($watermark->getWidth() / 2);
-            $watermark_y = ($this->getHeight() / 2) - ($watermark->getHeight() / 2);
+            $watermark_x = intval(($this->getWidth() / 2) - ($watermark->getWidth() / 2));
+            $watermark_y = intval(($this->getHeight() / 2) - ($watermark->getHeight() / 2));
         }
 
         $watermark->opacity($opacity);
