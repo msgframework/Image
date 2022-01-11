@@ -10,8 +10,6 @@ use MSGFramework\Lib\Image\Exception\ImageNotSavedException;
 class ImagickAdapter extends File implements ImageAdapterInterface
 {
     private \Imagick $image;
-    private int $width;
-    private int $height;
 
     /**
      * @throws \ImagickException
@@ -53,7 +51,7 @@ class ImagickAdapter extends File implements ImageAdapterInterface
         }
     }
 
-    function crop($width, $height): self
+    function crop(int $width, int $height): self
     {
         $width = min($width, $this->getWidth());
         $height = min($height, $this->getHeight());
@@ -67,10 +65,10 @@ class ImagickAdapter extends File implements ImageAdapterInterface
         $sy = floor(($this->getHeight() - $src_h) / 2);
         try {
             $this->image->cropimage(
-                $width,
-                $height,
-                $sx,
-                $sy
+                intval($width),
+                intval($height),
+                intval($sx),
+                intval($sy)
             );
         } catch (\ImagickException $e) {
             throw new ImageManipulateException($this->getPathName(), sprintf('crop to width: "%s" and height "%s"', $width, $height));
@@ -79,7 +77,7 @@ class ImagickAdapter extends File implements ImageAdapterInterface
         return $this;
     }
 
-    function scale($size = 100, int $site = 0): self
+    function scale(int $size = 100, int $site = 0): self
     {
         switch ($site) {
             case "1" :
@@ -114,11 +112,8 @@ class ImagickAdapter extends File implements ImageAdapterInterface
                 break;
         }
 
-        if ($width < 1) $width = 1;
-        if ($height < 1) $height = 1;
-
         try {
-            $this->image->resizeImage($width, $height, \Imagick::FILTER_LANCZOS, 1);
+            $this->image->resizeImage(intval($width), intval($height), \Imagick::FILTER_LANCZOS, 1);
         } catch (\ImagickException $e) {
             throw new ImageManipulateException($this->getPathName(), sprintf('resize to width: "%s" and height "%s"', $width, $height));
         }
@@ -195,7 +190,7 @@ class ImagickAdapter extends File implements ImageAdapterInterface
         $watermark->opacity($opacity);
 
         try {
-            $this->image->compositeImage($watermark->image, \Imagick::COMPOSITE_OVER, $watermark_x, $watermark_y, \Imagick::CHANNEL_ALPHA);
+            $this->image->compositeImage($watermark->image, \Imagick::COMPOSITE_OVER, intval($watermark_x), intval($watermark_y), \Imagick::CHANNEL_ALPHA);
         } catch (\ImagickException $e) {
             throw new ImageManipulateException($this->getPathName(), sprintf('watermarking by %s', $watermark->getPath()));
         }
