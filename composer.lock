@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20903be81d0f4e1879a90a4cd20b6b6a",
+    "content-hash": "863baf5e0b3e03a1e48328095247d079",
     "packages": [
         {
             "name": "msgframework/file",
-            "version": "v0.0.5",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/msgframework/File.git",
-                "reference": "789813292fc00148ad7193ac9b40bc748ad91853"
+                "reference": "43e7703d4919892ef0105e2d82a53c35fdf5fb52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/msgframework/File/zipball/789813292fc00148ad7193ac9b40bc748ad91853",
-                "reference": "789813292fc00148ad7193ac9b40bc748ad91853",
+                "url": "https://api.github.com/repos/msgframework/File/zipball/43e7703d4919892ef0105e2d82a53c35fdf5fb52",
+                "reference": "43e7703d4919892ef0105e2d82a53c35fdf5fb52",
                 "shasum": ""
             },
             "require": {
@@ -27,7 +27,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Msgframework\\Lib\\File\\": ""
+                    "Msgframework\\Lib\\File\\": "",
+                    "MSGFramework\\Lib\\File\\Exception\\": "/Exception"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -42,9 +43,9 @@
             ],
             "support": {
                 "issues": "https://github.com/msgframework/File/issues",
-                "source": "https://github.com/msgframework/File/tree/v0.0.5"
+                "source": "https://github.com/msgframework/File/tree/v0.1.0"
             },
-            "time": "2022-01-10T22:17:20+00:00"
+            "time": "2022-01-11T21:28:35+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
