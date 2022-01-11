@@ -27,7 +27,7 @@ jobs:
       - name: 'PHPUnit'
         uses: php-actions/phpunit@v3
         with:
-          php_extensions: gd imagick
+          php_extensions: xdebug gd imagick
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
           args: --coverage-text
