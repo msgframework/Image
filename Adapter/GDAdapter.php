@@ -256,7 +256,7 @@ class GDAdapter extends File implements ImageAdapterInterface
 
         imagedestroy($this->image);
 
-        if(!$result) {
+        if (!$result) {
             throw new ImageNotSavedException($this->getPathName(), $path);
         }
     }
@@ -345,5 +345,15 @@ class GDAdapter extends File implements ImageAdapterInterface
         }
 
         return $this;
+    }
+
+    public function destroy(): void
+    {
+        imagedestroy($this->image);
+    }
+
+    public function __destruct()
+    {
+        self::destroy();
     }
 }

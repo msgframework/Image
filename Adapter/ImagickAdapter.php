@@ -198,8 +198,13 @@ class ImagickAdapter extends File implements ImageAdapterInterface
         return $this;
     }
 
-    function __destruct()
+    public function destroy(): void
     {
         $this->image->clear();
+    }
+
+    public function __destruct()
+    {
+        self::destroy();
     }
 }

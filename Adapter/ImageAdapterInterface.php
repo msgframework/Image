@@ -14,4 +14,5 @@ interface ImageAdapterInterface
     public function save(string $path): void;
     public function show();
     public function watermark(ImageAdapterInterface $watermark, int $position, int $margin, int $ratio, float $opacity = 1);
+    public function destroy(): void;
 }
