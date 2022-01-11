@@ -2,11 +2,6 @@
 
 namespace MSGFramework\Lib\Image\Exception;
 
-/**
- * Thrown when a file was not found.
- *
- * @author Bernhard Schussek <bschussek@gmail.com>
- */
 class ImageNotSavedException extends ImageException
 {
     public function __construct(string $path, string $newPath)
