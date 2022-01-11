@@ -18,13 +18,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
-          coverage: xdebug
-
-      - name: 'Setup Problem Matches'
-        run: |
-          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+          extensions: mbstring, zip, gd, imagick, fileinfo
 
       - name: 'Install Dependencies'
         run: composer install --ignore-platform-reqs
@@ -32,7 +26,6 @@ jobs:
       - name: 'PHPUnit'
         uses: php-actions/phpunit@v3
         with:
-          php_extensions: xdebug gd imagick
+          php_extensions: gd imagick
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
-          args: --coverage-text
