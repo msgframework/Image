@@ -18,7 +18,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: mbstring, zip, gd, imagick, fileinfo
+          extensions: mbstring, zip, gd, imagick, fileinfo, xdebug
+          coverage: xdebug
 
       - name: 'Install Dependencies'
         run: composer install --ignore-platform-reqs
@@ -29,3 +30,6 @@ jobs:
           php_extensions: gd imagick
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
+          args: --coverage-text
+        env:
+          XDEBUG_MODE: coverage
