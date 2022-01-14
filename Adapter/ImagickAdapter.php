@@ -34,7 +34,7 @@ class ImagickAdapter extends ImageAdapter implements ImageAdapterInterface
         return $this->image->getImageHeight();
     }
 
-    function resize($size = 100, int $site = 0): self
+    function resize($size = 100, int $side = 0): self
     {
         $size = explode("x", $size);
 
@@ -46,7 +46,7 @@ class ImagickAdapter extends ImageAdapter implements ImageAdapterInterface
         } else {
             $size[0] = intval($size[0]);
 
-            return $this->scale($size[0], $site);
+            return $this->scale($size[0], $side);
         }
     }
 
@@ -76,10 +76,10 @@ class ImagickAdapter extends ImageAdapter implements ImageAdapterInterface
         return $this;
     }
 
-    function scale(int $size = 100, int $site = 0): self
+    function scale(int $size = 100, int $side = 0): self
     {
-        switch ($site) {
-            case self::IMAGE_SITE_WIDTH :
+        switch ($side) {
+            case self::IMAGE_SIDE_WIDTH :
                 if ($this->getWidth() <= $size) {
                     return $this;
                 } else {
@@ -89,7 +89,7 @@ class ImagickAdapter extends ImageAdapter implements ImageAdapterInterface
 
                 break;
 
-            case self::IMAGE_SITE_HEIGHT :
+            case self::IMAGE_SIDE_HEIGHT :
                 if ($this->getHeight() <= $size) {
                     return $this;
                 } else {
@@ -99,7 +99,7 @@ class ImagickAdapter extends ImageAdapter implements ImageAdapterInterface
 
                 break;
 
-            case self::IMAGE_SITE_AUTO :
+            case self::IMAGE_SIDE_AUTO :
             default :
                 if ($this->getWidth() >= $this->getHeight()) {
                     $width = $size;
