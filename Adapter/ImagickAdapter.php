@@ -2,12 +2,11 @@
 
 namespace Msgframework\Lib\Image\Adapter;
 
-use Msgframework\Lib\File\File;
 use MSGFramework\Lib\Image\Exception\ImageException;
 use MSGFramework\Lib\Image\Exception\ImageManipulateException;
 use MSGFramework\Lib\Image\Exception\ImageNotSavedException;
 
-class ImagickAdapter extends File implements ImageAdapterInterface
+class ImagickAdapter extends ImageAdapter implements ImageAdapterInterface
 {
     private \Imagick $image;
 
@@ -80,7 +79,7 @@ class ImagickAdapter extends File implements ImageAdapterInterface
     function scale(int $size = 100, int $site = 0): self
     {
         switch ($site) {
-            case "1" :
+            case self::IMAGE_SITE_WIDTH :
                 if ($this->getWidth() <= $size) {
                     return $this;
                 } else {
@@ -90,7 +89,7 @@ class ImagickAdapter extends File implements ImageAdapterInterface
 
                 break;
 
-            case "2" :
+            case self::IMAGE_SITE_HEIGHT :
                 if ($this->getHeight() <= $size) {
                     return $this;
                 } else {
@@ -100,6 +99,7 @@ class ImagickAdapter extends File implements ImageAdapterInterface
 
                 break;
 
+            case self::IMAGE_SITE_AUTO :
             default :
                 if ($this->getWidth() >= $this->getHeight()) {
                     $width = $size;
