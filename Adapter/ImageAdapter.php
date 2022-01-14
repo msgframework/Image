@@ -6,7 +6,7 @@ use Msgframework\Lib\File\File;
 
 class ImageAdapter extends File
 {
-    const IMAGE_SITE_AUTO = 0;
-    const IMAGE_SITE_WIDTH = 1;
-    const IMAGE_SITE_HEIGHT = 2;
+    const IMAGE_SIDE_AUTO = 0;
+    const IMAGE_SIDE_WIDTH = 1;
+    const IMAGE_SIDE_HEIGHT = 2;
 }

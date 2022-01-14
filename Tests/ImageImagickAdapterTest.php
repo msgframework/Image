@@ -1,6 +1,7 @@
 <?php
 
 
+use Msgframework\Lib\Image\Adapter\ImageAdapter;
 use PHPUnit\Framework\TestCase;
 
 class ImageImagickAdapterTest extends TestCase
@@ -25,9 +26,9 @@ class ImageImagickAdapterTest extends TestCase
         $this->assertSame(2482, $image->getWidth());
         $this->assertSame(3475, $image->getHeight());
 
-        $this->assertSame(300, $image->resize(300, 1)->getWidth());
+        $this->assertSame(300, $image->resize(300, ImageAdapter::IMAGE_SIDE_WIDTH)->getWidth());
 
-        $this->assertSame(300, $image->resize(300, 2)->getHeight());
+        $this->assertSame(300, $image->resize(300, ImageAdapter::IMAGE_SIDE_HEIGHT)->getHeight());
         $image->destroy();
     }
 
@@ -52,13 +53,13 @@ class ImageImagickAdapterTest extends TestCase
         $this->assertSame(2482, $image->getWidth());
         $this->assertSame(3475, $image->getHeight());
 
-        $image->scale(200, 1);
+        $image->scale(200, ImageAdapter::IMAGE_SIDE_WIDTH);
 
         $this->assertSame(200, $image->getWidth());
 
         $image = new \Msgframework\Lib\Image\Adapter\ImagickAdapter($this->path['jpg']);
 
-        $image->scale(200, 2);
+        $image->scale(200, ImageAdapter::IMAGE_SIDE_HEIGHT);
 
         $this->assertSame(200, $image->getHeight());
         $image->destroy();
