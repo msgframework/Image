@@ -1,6 +1,6 @@
 name: PHPUnit
 
-on: [push]
+on: [workflow_dispatch]
 
 jobs:
   run:
