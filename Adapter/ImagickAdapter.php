@@ -163,7 +163,7 @@ class ImagickAdapter extends ImageAdapter implements ImageAdapterInterface
         }
     }
 
-    function watermark(ImageAdapterInterface $watermark, int $position, int $margin, int $ratio, float $opacity = 100): self
+    function watermark(ImageAdapterInterface $watermark, int $position, int $margin, int $ratio, float $opacity = 1): self
     {
         $watermark->resize($this->getWidth() * ($ratio / 100), 1);
 
