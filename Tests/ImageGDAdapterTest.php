@@ -26,9 +26,9 @@ class ImageGDAdapterTest extends TestCase
         $this->assertSame(2482, $image->getWidth());
         $this->assertSame(3475, $image->getHeight());
 
-        $this->assertSame(300, $image->resize(300, ImageAdapter::IMAGE_SIDE_WIDTH)->getWidth());
+        $this->assertSame(300, $image->resize(300, ImageAdapter::SIDE_WIDTH)->getWidth());
 
-        $this->assertSame(300, $image->resize(300, ImageAdapter::IMAGE_SIDE_HEIGHT)->getHeight());
+        $this->assertSame(300, $image->resize(300, ImageAdapter::SIDE_HEIGHT)->getHeight());
         $image->destroy();
     }
 
@@ -53,13 +53,13 @@ class ImageGDAdapterTest extends TestCase
         $this->assertSame(2482, $image->getWidth());
         $this->assertSame(3475, $image->getHeight());
 
-        $image->scale(200, ImageAdapter::IMAGE_SIDE_WIDTH);
+        $image->scale(200, ImageAdapter::SIDE_WIDTH);
 
         $this->assertSame(200, $image->getWidth());
 
         $image = new \Msgframework\Lib\Image\Adapter\GDAdapter($this->path['jpg']);
 
-        $image->scale(200, ImageAdapter::IMAGE_SIDE_HEIGHT);
+        $image->scale(200, ImageAdapter::SIDE_HEIGHT);
 
         $this->assertSame(200, $image->getHeight());
         $image->destroy();

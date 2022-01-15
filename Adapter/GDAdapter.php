@@ -127,7 +127,7 @@ class GDAdapter extends ImageAdapter implements ImageAdapterInterface
     function scale(int $size = 100, int $side = 0): self
     {
         switch ($side) {
-            case self::IMAGE_SIDE_WIDTH :
+            case self::SIDE_WIDTH :
                 if ($this->getWidth() <= $size) {
                     return $this;
                 } else {
@@ -137,7 +137,7 @@ class GDAdapter extends ImageAdapter implements ImageAdapterInterface
 
                 break;
 
-            case self::IMAGE_SIDE_HEIGHT :
+            case self::SIDE_HEIGHT :
                 if ($this->getHeight() <= $size) {
                     return $this;
                 } else {
@@ -147,7 +147,7 @@ class GDAdapter extends ImageAdapter implements ImageAdapterInterface
 
                 break;
 
-            case self::IMAGE_SIDE_AUTO :
+            case self::SIDE_AUTO :
             default :
 
                 if ($this->getWidth() >= $this->getHeight()) {
@@ -292,21 +292,53 @@ class GDAdapter extends ImageAdapter implements ImageAdapterInterface
     {
         $watermark->resize($this->getWidth() * ($ratio / 100), 1);
 
-        if ($position == 1) {
-            $watermark_x = $margin;
-            $watermark_y = $margin;
-        } elseif ($position == 2) {
-            $watermark_x = $this->getWidth() - $margin - $watermark->getWidth();
-            $watermark_y = $margin;
-        } elseif ($position == 3) {
-            $watermark_x = $margin;
-            $watermark_y = $this->getHeight() - $margin - $watermark->getHeight();
-        } elseif ($position == 4) {
-            $watermark_x = $this->getWidth() - $margin - $watermark->getWidth();
-            $watermark_y = $this->getHeight() - $margin - $watermark->getHeight();
-        } else {
-            $watermark_x = intval(($this->getWidth() / 2) - ($watermark->getWidth() / 2));
-            $watermark_y = intval(($this->getHeight() / 2) - ($watermark->getHeight() / 2));
+        switch ($position)
+        {
+            case ImageAdapter::WATERMARK_TOP_CENTER :
+                $watermark_x = ($this->getWidth() / 2) - ($watermark->getWidth() / 2);
+                $watermark_y = $margin;
+                break;
+
+            case ImageAdapter::WATERMARK_TOP_RIGHT :
+                $watermark_x = $this->getWidth() - $margin - $watermark->getWidth();
+                $watermark_y = $margin;
+                break;
+
+            case ImageAdapter::WATERMARK_CENTER_LEFT :
+                $watermark_x = $margin;
+                $watermark_y = ($this->getHeight() / 2) - ($watermark->getHeight() / 2);
+                break;
+
+            case ImageAdapter::WATERMARK_CENTER_CENTER :
+                $watermark_x = ($this->getWidth() / 2) - ($watermark->getWidth() / 2);
+                $watermark_y = ($this->getHeight() / 2) - ($watermark->getHeight() / 2);
+                break;
+
+            case ImageAdapter::WATERMARK_CENTER_RIGHT :
+                $watermark_x = $this->getWidth() - $margin - $watermark->getWidth();
+                $watermark_y = ($this->getHeight() / 2) - ($watermark->getHeight() / 2);
+                break;
+
+            case ImageAdapter::WATERMARK_BOTTOM_LEFT :
+                $watermark_x = $margin;
+                $watermark_y = $this->getHeight() - $margin - $watermark->getHeight();
+                break;
+
+            case ImageAdapter::WATERMARK_BOTTOM_CENTER :
+                $watermark_x = ($this->getWidth() / 2) - ($watermark->getWidth() / 2);
+                $watermark_y = $this->getHeight() - $margin - $watermark->getHeight();
+                break;
+
+            case ImageAdapter::WATERMARK_BOTTOM_RIGHT :
+                $watermark_x = $this->getWidth() - $margin - $watermark->getWidth();
+                $watermark_y = $this->getHeight() - $margin - $watermark->getHeight();
+                break;
+
+            case ImageAdapter::WATERMARK_TOP_LEFT :
+            default:
+                $watermark_x = $margin;
+                $watermark_y = $margin;
+                break;
         }
 
         $watermark->opacity($opacity);
