@@ -168,7 +168,9 @@ class ImagickAdapter extends ImageAdapter implements ImageAdapterInterface
      */
     #[Pure] public function getContent(): string
     {
-        return $this->image->getImageBlob();
+        ob_start();
+        $this->show();
+        return ob_get_clean();
     }
 
     function watermark(ImageAdapterInterface $watermark, int $position, int $margin, int $ratio, float $opacity = 1): self
