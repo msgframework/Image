@@ -13,6 +13,7 @@ interface ImageAdapterInterface
     public function quality(int $quality = 90): self;
     public function save(string $path): void;
     public function show();
+    public function getContent(): string;
     public function watermark(ImageAdapterInterface $watermark, int $position, int $margin, int $ratio, float $opacity = 1);
     public function destroy(): void;
 }

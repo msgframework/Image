@@ -2,6 +2,7 @@
 
 namespace Msgframework\Lib\Image\Adapter;
 
+use JetBrains\PhpStorm\Pure;
 use MSGFramework\Lib\Image\Exception\ImageException;
 use MSGFramework\Lib\Image\Exception\ImageManipulateException;
 use MSGFramework\Lib\Image\Exception\ImageNotSavedException;
@@ -160,6 +161,14 @@ class ImagickAdapter extends ImageAdapter implements ImageAdapterInterface
         } catch (\ImagickException $e) {
             throw new ImageException(sprintf('Can\'t show image "%s"', $this->getPathName()));
         }
+    }
+
+    /**
+     * @throws \ImagickException
+     */
+    #[Pure] public function getContent(): string
+    {
+        return $this->image->getImageBlob();
     }
 
     function watermark(ImageAdapterInterface $watermark, int $position, int $margin, int $ratio, float $opacity = 1): self

@@ -288,6 +288,13 @@ class GDAdapter extends ImageAdapter implements ImageAdapterInterface
         imagedestroy($this->image);
     }
 
+    public function getContent(): string
+    {
+        ob_start();
+        $this->show();
+        return ob_get_clean();
+    }
+
     function watermark(ImageAdapterInterface $watermark, int $position, int $margin, int $ratio, float $opacity = 1): self
     {
         $watermark->resize($this->getWidth() * ($ratio / 100), 1);
