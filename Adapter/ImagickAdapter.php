@@ -155,7 +155,6 @@ class ImagickAdapter extends ImageAdapter implements ImageAdapterInterface
     function show()
     {
         try {
-            header("Content-Type: image/jpg");
             echo $this->image->getImageBlob();
             $this->image->clear();
         } catch (\ImagickException $e) {
