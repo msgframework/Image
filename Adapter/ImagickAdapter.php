@@ -166,7 +166,7 @@ class ImagickAdapter extends ImageAdapter implements ImageAdapterInterface
     /**
      * @throws \ImagickException
      */
-    #[Pure] public function getContent(): string
+    public function getContent(): string
     {
         ob_start();
         $this->show();
